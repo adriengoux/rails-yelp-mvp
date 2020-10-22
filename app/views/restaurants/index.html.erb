@@ -1,31 +1,27 @@
-<p id="notice"><%= notice %></p>
+<h1>Restaurants#index</h1>
+<p>Find me in app/views/restaurants/index.html.erb</p>
 
-<h1>Restaurants</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Rating</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= restaurant.name %></td>
-        <td><%= restaurant.address %></td>
-        <td><%= restaurant.rating %></td>
-        <td><%= link_to 'Show', restaurant %></td>
-        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<ul>
+  <% @restaurants.each do |restaurant| %>
+    <li>
+    <%= restaurant.name %><%= link_to "See details", restaurant_path(restaurant), class: "btn btn-primary"%>
+    <%= restaurant.category %>
+    <%= restaurant.address %>
+    <%= restaurant.phone_number %>
+    <ul>
+      <p>
+      <%= link_to 'Add a new review', new_restaurant_review_path(restaurant) %> </p>
+    <% restaurant.reviews.each do |review| %>
+      <li>
+        <%= review.comment %> <%= review.rating %>
+      </li>
     <% end %>
-  </tbody>
-</table>
+    </ul>
+    </li>
+  <% end %>
+</ul>
 
-<br>
 
-<%= link_to 'New Restaurant', new_restaurant_path %>
+
+

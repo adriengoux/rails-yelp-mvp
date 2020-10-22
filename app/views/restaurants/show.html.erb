@@ -1,19 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @restaurant.name  %> </h1>
+<p> <%= @restaurant.category %> </p>
+<p> <%= @restaurant.address %> </p>
+<p> <%= @restaurant.phone_number %> </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+<ul>
+  <% @restaurant.reviews.each do |review| %>
+    <li>
+        <%= review.rating %> - <%= review.comment %>
+    </li>
+  <% end %>
+    <li>
+      <%= simple_form_for [ @restaurant, @review ] do |f| %>
+        <%= f.input :comment %>
+        <%= f.input :rating %>
+        <%= f.submit 'post my comment' %>
+      <% end %>
+    </li>
+</ul>
 
-<p>
-  <strong>Address:</strong>
-  <%= @restaurant.address %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @restaurant.rating %>
-</p>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+<p> <%= link_to "Home", restaurants_path %> </p>
