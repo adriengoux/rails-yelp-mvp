@@ -1,23 +1,23 @@
 <h1>Restaurants#index</h1>
 <p>Find me in app/views/restaurants/index.html.erb</p>
 
+<%= link_to "new restaurant", new_restaurant_path, class: "btn btn-secondary" %>
 
 <ul>
   <% @restaurants.each do |restaurant| %>
     <li>
-    <%= restaurant.name %><%= link_to "See details", restaurant_path(restaurant), class: "btn btn-primary"%>
-    <%= restaurant.category %>
-    <%= restaurant.address %>
-    <%= restaurant.phone_number %>
-    <ul>
-      <p>
-      <%= link_to 'Add a new review', new_restaurant_review_path(restaurant) %> </p>
-    <% restaurant.reviews.each do |review| %>
-      <li>
-        <%= review.comment %> <%= review.rating %>
-      </li>
-    <% end %>
-    </ul>
+      <%= restaurant.name %><%= link_to "See details", restaurant_path(restaurant), class: "btn btn-primary"%>
+      <%= restaurant.category %>
+      <%= restaurant.address %>
+      <%= restaurant.phone_number %>
+      <ul>
+        <% restaurant.reviews.each do |review| %>
+          <li>
+            <%= review.content %> <%= review.rating %>
+          </li>
+        <% end %>
+      </ul>
+      <p><%= link_to 'Add a new review', new_restaurant_review_path(restaurant) %> </p>
     </li>
   <% end %>
 </ul>

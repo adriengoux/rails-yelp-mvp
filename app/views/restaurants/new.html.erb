@@ -1,0 +1,13 @@
+<h1>Register a new restaurant</h1>
+<p>Find me in app/views/restaurant/new.html.erb</p>
+
+<%= simple_form_for @restaurant do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :phone_number %>
+  <%= f.input :category %>
+
+  <%= f.submit 'post my comment' %>
+<% end %>
+
+<p> <%= link_to "Home", restaurants_path %> </p>
